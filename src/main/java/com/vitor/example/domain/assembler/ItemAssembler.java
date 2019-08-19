@@ -10,9 +10,10 @@ public class ItemAssembler {
     /**
      * The default constructor.
      */
-    public ItemAssembler(){}
+    public ItemAssembler() {
+    }
 
-    public static Item fromItemSummary(final ItemSummary itemSummary){
+    public static Item fromItemSummary(final ItemSummary itemSummary) {
         Item item = new Item();
 
         item.setCreator(itemSummary.getCreator());
@@ -22,3 +23,4 @@ public class ItemAssembler {
 
         return item;
     }
+}

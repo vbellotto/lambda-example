@@ -32,7 +32,7 @@ resource "aws_codepipeline" "pipeline" {
       name = "Source"
       provider = "CodeCommit"
       version = "1"
-      configuration {
+      configuration = {
         RepositoryName = "${var.repository}"
         BranchName = "${var.branch}"
       }
@@ -61,11 +61,11 @@ resource "aws_codepipeline" "pipeline" {
     action {
       category = "Invoke"
       owner = "AWS"
-      name = "GetCampaignsLambdaDeploy"
+      name = "GetItemsLambdaDeploy"
       provider = "Lambda"
       version = "1"
       input_artifacts = [
-        "ApiGetCampaignsLambda"]
+        "GetItemsLambda"]
       configuration = {
         FunctionName = "${aws_lambda_function.auto_deploy_lambda.function_name}"
         UserParameters = "${var.get_items_lambda_name}"

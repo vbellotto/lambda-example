@@ -2,8 +2,8 @@ locals {
   project_name = "item-example"
   stage = "dev"
   log_level = "Info"
-  repository = "ctw-test"
-  branch = "master"
+  repository = "<your repository name>"
+  branch = "<the target branch name>"
 }
 
 resource "aws_s3_bucket" "artifact_bucket"{
@@ -35,6 +35,13 @@ module "lambda-infrastructure" {
   project_name  = "${local.project_name}"
   stage = "${local.stage}"
   log_level = "${local.log_level}"
-  artifact_bucket_name = "${aws_s3_bucket.artifact_bucket}"
+  artifact_bucket_name = "${aws_s3_bucket.artifact_bucket.bucket}"
   items_table = "${module.dynamo-infrastructure.dynamo_items_table_name}"
+}
+
+module "api-gateway-infrastructure" {
+  source = "../../modules/gateway-infrastructure"
+  project_name  = "${local.project_name}"
+  stage = "${local.stage}"
+  get_items_lambda_name = "${module.lambda-infrastructure.get_items_lambda_name}"
 }

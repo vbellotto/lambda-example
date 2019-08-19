@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Starting build `date` in `pwd`"
+      - echo "Cleaning and testing ..."
+      - mvn clean
+      - mvn test
+  build:
+    commands:
+      - echo "Starting packing ... "
+      - mvn package
+      - echo "Packing finished."
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+
+artifacts:
+  name: 'GetItemsLambda'
+  files:
+    - '**/*'
+  base-directory: 'target/classes'
+
+cache:
+  paths:
+    - '/root/.m2/**/*'

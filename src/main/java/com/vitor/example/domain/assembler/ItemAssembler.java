@@ -1,11 +1,11 @@
 package com.vitor.example.domain.assembler;
 
 import com.vitor.example.domain.entity.Item;
+import com.vitor.example.domain.model.ItemSummary;
 
 /**
  * Create an {@link Item} object.
  *
- * @author - Vitor.Bellotto@criticaltechworks.com on 19/08/2019
  */
 public class ItemAssembler {
 
@@ -15,6 +15,11 @@ public class ItemAssembler {
     public ItemAssembler() {
     }
 
+    /**
+     * Creantes a new Item from a ItemSummary.
+     * @param itemSummary - the ItemSummary
+     * @return - the Item
+     */
     public static Item fromItemSummary(final ItemSummary itemSummary) {
         Item item = new Item();
 

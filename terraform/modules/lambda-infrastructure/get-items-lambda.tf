@@ -1,6 +1,6 @@
 locals {
-  get-items-file = "../../../src/window-opener-1.0-SNAPSHOT.jar"
-  get-items-key = "get-items-lambda-${urlencode(base64sha256(file(local.get-items-file)))}"
+  get-items-file = "../../../target/item-1.0-SNAPSHOT.jar"
+  get-items-key = "get-items-lambda-${urlencode(filebase64sha256(local.get-items-file))}"
 }
 
 resource "aws_s3_bucket_object" "get_items" {
@@ -9,22 +9,22 @@ resource "aws_s3_bucket_object" "get_items" {
   source = "${local.get-items-file}"
 }
 
-resource "aws_lambda_function" "get_powi_lambda" {
+resource "aws_lambda_function" "get_items_lambda" {
   description = "Receives resources requests.."
   function_name = "${var.project_name}-${data.aws_region.current.name}-${var.stage}-get-items"
-  handler = "com.bmw.window.opener.handler.ListNearestPOWIHandler::handleRequest"
+  handler = "com.vitor.example.handler.GetItemsHandler::handleRequest"
   role = "${aws_iam_role.get_items_role.arn}"
   runtime = "java8"
   memory_size = 512
   timeout = 300
   s3_bucket = "${aws_s3_bucket_object.get_items.bucket}"
   s3_key = "${aws_s3_bucket_object.get_items.key}"
-  source_code_hash = "${base64sha256(file(aws_s3_bucket_object.get_items.source))}"
+  source_code_hash = "${filebase64sha256(aws_s3_bucket_object.get_items.source)}"
 
   environment {
-    variables {
+    variables = {
       REGION = "${data.aws_region.current.name}"
-      LOG_LEVEL = "${var.log_level}",
+      LOG_LEVEL = "${var.log_level}"
       TABLE = "${var.items_table}"
     }
   }

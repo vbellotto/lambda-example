@@ -22,14 +22,14 @@ PATTERN
 }
 
 resource "aws_cloudwatch_event_target" "sns_dev" {
-  rule      = "${aws_cloudwatch_event_rule.code_pipeline_dev_rule[count.index].name}"
+  rule      = "${aws_cloudwatch_event_rule.code_pipeline_dev_rule.name}"
   target_id = "CDHSelfServicePortalBackendPipelineDevNotification"
   arn       = "${aws_sns_topic.self_service_portal_backend_pipeline_topic.arn}"
 }
 
 resource "aws_sns_topic_policy" "default_dev" {
   arn    = "${aws_sns_topic.self_service_portal_backend_pipeline_topic.arn}"
-  policy = "${data.aws_iam_policy_document.sns_topic_policy_dev[count.index].json}"
+  policy = "${data.aws_iam_policy_document.sns_topic_policy_dev.json}"
 }
 
 data "aws_iam_policy_document" "sns_topic_policy_dev" {

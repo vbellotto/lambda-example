@@ -12,6 +12,7 @@
         <revision>1.0.0-SNAPSHOT</revision>
         <lambda-java-core.version>1.2.0</lambda-java-core.version>
         <lambda-java-events.version>2.2.5</lambda-java-events.version>
+        <dynamo.version>1.11.511</dynamo.version>
         <junit.version>5.3.1</junit.version>
         <javax-inject.version>1</javax-inject.version>
         <dagger.version>2.13</dagger.version>
@@ -24,9 +25,6 @@
         <log4j>2.8.2</log4j>
         <lambda-log4j>1.0.0</lambda-log4j>
         <aws-serverless-container>1.2</aws-serverless-container>
-        <aws-sns.version>1.11.440</aws-sns.version>
-        <java-sdk-elasticsearh.version>1.11.534</java-sdk-elasticsearh.version>
-        <elasticsearch-client.version>6.6.1</elasticsearch-client.version>
     </properties>
 
     <dependencies>
@@ -40,6 +38,11 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-events</artifactId>
             <version>${lambda-java-events.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-dynamodb</artifactId>
+            <version>${dynamo.version}</version>
         </dependency>
         <!-- Dependency Injection -->
         <dependency>

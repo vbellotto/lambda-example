@@ -7,4 +7,5 @@ The goal of this code is show how use terraform scripts to achieve the
     * Lambda Function
     * DynamoDB
 
+It is still in developement....
      

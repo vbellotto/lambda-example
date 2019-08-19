@@ -1,5 +1,7 @@
 package com.vitor.example.domain.assembler;
 
+import com.vitor.example.domain.entity.Item;
+
 /**
  * Create an {@link Item} object.
  *

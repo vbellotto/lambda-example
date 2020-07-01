@@ -22,7 +22,7 @@
         <powemock-core.version>1.7.4</powemock-core.version>
         <gson.version>2.2.4</gson.version>
         <org.json.version>20180813</org.json.version>
-        <log4j>2.8.2</log4j>
+        <log4j>2.13.3</log4j>
         <lambda-log4j>1.0.0</lambda-log4j>
         <aws-serverless-container>1.2</aws-serverless-container>
     </properties>
